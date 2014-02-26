@@ -25,7 +25,7 @@ optional arguments:
 
 **install in *nix**:
 ```bash
-wget https://raw.github.com/zhoufeng1989/translate/master/translate
+wget --no-check-certificate https://raw.github.com/zhoufeng1989/translate/master/translate
 chmod u+x translate
 # move it wherever in your PATH
 mv translate /bin/
