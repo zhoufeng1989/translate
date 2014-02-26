@@ -1,0 +1,53 @@
+#!/bin/env python
+import requests
+import argparse
+import sys
+import re
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        prog='translate',
+        description='translate use translate.google.com',
+        add_help=True)
+    parser.add_argument(
+        '-sl', '--source language', type=str, default='auto',
+        help='translate from the source language')
+    parser.add_argument(
+        '-tl', '--target language', type=str, default='zh-CN',
+        help='translate to the target language')
+    parser.add_argument(
+        'text', nargs='+', type=str,
+        help='text to be translated')
+    parser.add_argument(
+        '-r', '--reverse', action='store_true',
+        help='change target language to en, useful when from zh-CN to en')
+    args = parser.parse_args()
+
+    if args.reverse:
+        setattr(args, 'target language', 'en')
+    params = {
+        'client': 't',
+        'sl': getattr(args, 'source language'),
+        'tl': getattr(args, 'target language'),
+        'ie': 'UTF-8',
+        'oe': 'UTF-8',
+        'texts': args.text
+    }
+    return params
+
+
+def get_result(url, params):
+    texts = params.pop('texts')
+    words = []
+    for text in texts:
+        params['q'] = text
+        result = requests.get(url, params=params)
+        matched_result = re.match(r'\[\[\["(.*?)",', result.text)
+        words.append(matched_result.groups()[0].lower())
+    return words
+
+if __name__ == '__main__':
+    url = 'http://translate.google.cn/translate_a/t'
+    params = parse_args()
+    sys.stdout.write('\n'.join(get_result(url, params)) + '\n')
