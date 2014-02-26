@@ -21,7 +21,7 @@ def parse_args():
         help='text to be translated')
     parser.add_argument(
         '-r', '--reverse', action='store_true',
-        help='change target language to en, useful when from zh-CN to en')
+        help='change target language to en, useful when translate from zh-CN to en')
     args = parser.parse_args()
 
     if args.reverse:

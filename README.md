@@ -9,7 +9,8 @@ translate command tools baseed on google translate
 translate use translate.google.com
 
 positional arguments:     
-+   **text**   text to be translated
++   **text**   
+    text to be translated
 
 optional arguments:          
 +   **-h, --help**     
@@ -19,7 +20,7 @@ optional arguments:
 +   **-tl TARGET LANGUAGE, --target language TARGET LANGUAGE**   
     translate to the target language   
 +   **-r, --reverse**         
-    change target language to en, useful when from zh-CN
+    change target language to en, useful when translate from zh-CN
 
 
 **install in *nix**:
