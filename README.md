@@ -40,6 +40,9 @@ translate python
 translate very good
 =>很
 =>好
+# translate phrase
+translate 'come on'
+=>来吧
 # from zh-CN to en
 translate -r 中国
 =>china
